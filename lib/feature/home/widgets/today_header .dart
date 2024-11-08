@@ -5,7 +5,7 @@ import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/core/widgets/custom_button.dart';
 import 'package:taskati/feature/add_task/add_task_screen.dart';
 
-class TodayHeader extends StatelessWidget {
+class TodayHeader  extends StatelessWidget {
   const TodayHeader({
     super.key,
   });
@@ -33,7 +33,7 @@ class TodayHeader extends StatelessWidget {
           height: 45,
           text: "+Add task",
           onPressed: () {
-            pushTo(context, AddTaskScreen());
+            pushTo(context, const AddTaskScreen());
           },
         )
       ],

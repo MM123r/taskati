@@ -8,6 +8,8 @@ import 'package:taskati/feature/home/home_view.dart';
 import 'package:taskati/feature/upload/upload_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -19,9 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isUploaded  = AppLocalStorage.getcachData(AppLocalStorage.isUploadKey) ?? false;
     Future.delayed(const Duration(seconds: 5), () {
       if (isUploaded) {
-        pushWithReplacment(context, HomeView());
+        // ignore: use_build_context_synchronously
+        pushWithReplacment(context, const HomeView());
       } else {
-        pushWithReplacment(context, UploadScreen());
+        // ignore: use_build_context_synchronously
+        pushWithReplacment(context, const UploadScreen());
       }
     });
   }
@@ -40,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const Gap(10),
             Text(
-              "It\s time to get organized",
+              "Its time to get organized",
               style: getSmallTextStyle(),
             ),
           ],

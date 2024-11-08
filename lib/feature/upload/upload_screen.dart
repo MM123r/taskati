@@ -10,6 +10,8 @@ import 'package:taskati/core/widgets/custom_button.dart';
 import 'package:taskati/feature/home/home_view.dart';
 
 class UploadScreen extends StatefulWidget {
+  const UploadScreen({super.key});
+
   @override
   State<UploadScreen> createState() => _UploadScreenState();
 }
@@ -40,16 +42,16 @@ class _UploadScreenState extends State<UploadScreen> {
                   //
                   else {
                     //cache the data
-                    AppLocalStorage.cachData(AppLocalStorage.nameKey,name);
-                    AppLocalStorage.cachData(AppLocalStorage.imageKey,path);
-                    AppLocalStorage.cachData(AppLocalStorage.isUploadKey,true);
+                    AppLocalStorage.cachData(AppLocalStorage.nameKey, name);
+                    AppLocalStorage.cachData(AppLocalStorage.imageKey, path);
+                    AppLocalStorage.cachData(AppLocalStorage.isUploadKey, true);
                     //HomeView
-                    pushWithReplacment(context, HomeView());
+                    pushWithReplacment(context, const HomeView());
                   }
                 },
                 child: Text(
                   "Done",
-                  style: getSmallTextStyle(color: AppColors.primaruColor),
+                  style: getSmallTextStyle(color: AppColors.redColor),
                 ))
           ],
         ),
@@ -63,6 +65,7 @@ class _UploadScreenState extends State<UploadScreen> {
               children: [
                 CircleAvatar(
                   radius: 70,
+                  backgroundColor: AppColors.primaruColor,
                   backgroundImage: path != null
                       ? AssetImage(path!)
                       : const AssetImage('assets/images/user2.jpeg'),
@@ -70,18 +73,14 @@ class _UploadScreenState extends State<UploadScreen> {
                 const Gap(30),
                 CustomButton(
                   onPressed: () async {
-                    await uploadImage(
-                      isCamera: true,
-                    );
+                    await uploadImage(isCamera: true);
                   },
-                  text: 'Upload From Image',
+                  text: 'Upload From Camera',
                 ),
                 const Gap(10),
                 CustomButton(
                   onPressed: () async {
-                    await uploadImage(
-                      isCamera: false,
-                    );
+                    await uploadImage(isCamera: false);
                   },
                   text: 'Upload From Gallery',
                 ),
@@ -98,9 +97,8 @@ class _UploadScreenState extends State<UploadScreen> {
                       name = value;
                     });
                   },
-                  decoration: InputDecoration(
+                  decoration:  const InputDecoration(
                     hintText: 'Enter your name',
-                    
                   ),
                 )
               ],

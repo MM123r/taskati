@@ -1,12 +1,17 @@
+
+
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/feature/home/widgets/home_header.dart';
+import 'package:taskati/feature/home/widgets/task_item.dart';
 import 'package:taskati/feature/home/widgets/today_header%20.dart';
 
 class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -47,68 +52,62 @@ class _HomeViewState extends State<HomeView> {
               child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(15),
-                    margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.primaruColor,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Flutter Task 1",
-                                style: getTitleTextStyle(
-                                    color: AppColors.whiteColor, fontsize: 16),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const Gap(5),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.watch_later_outlined,
-                                    color: AppColors.whiteColor,
-                                    size: 20,
-                                  ),
-                                  Gap(5),
-                                  Text(
-                                    "10:00 AM  11:00 AM",
-                                    style: getSmallTextStyle(
-                                        color: AppColors.whiteColor,
-                                        fontsize: 12),
-                                  ),
-                                ],
-                              ),
-                              const Gap(5),
-                              Text(
-                                "I will do This Task",
-                                style: getSmallTextStyle(
-                                    color: AppColors.whiteColor, fontsize: 12),
-                              ),
-                            ],
-                          ),
+                  return Dismissible(
+                      key: UniqueKey(),
+                      secondaryBackground: Container(
+                        margin: const EdgeInsets.only(bottom: 8, top: 8),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.redColor,
                         ),
-                        Container(
-                          width: 1,
-                          height: 60,
-                          color: AppColors.whiteColor,
-                          child: RotatedBox(
-                              quarterTurns: 3,
-                              child: Text(
-                                "TODO",
-                                style: getBodyTextStyle(
-                                    color: AppColors.whiteColor,
-                                    fontweight: FontWeight.bold),
-                              )),
-                        )
-                      ],
-                    ),
-                  );
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.delete,
+                              color: AppColors.whiteColor,
+                            ),
+                            const Gap(10),
+                            Text(
+                              "Delete",
+                              style:
+                                  getBodyTextStyle(color: AppColors.whiteColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      background: Container(
+                        margin: const EdgeInsets.only(bottom: 8, top: 8),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.check,
+                              color: AppColors.whiteColor,
+                            ),
+                            const Gap(10),
+                            Text(
+                              "Complete",
+                              style:
+                                  getBodyTextStyle(color: AppColors.whiteColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onDismissed: (direction) {
+                        if (direction == DismissDirection.startToEnd) {
+                          //log("Complete");
+                        } else {
+                         // log("Delete");
+                        }
+                      },
+                      child: const task_item());
                 },
               ),
             ),
