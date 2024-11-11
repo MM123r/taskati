@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     bool isUploaded  = AppLocalStorage.getcachData(AppLocalStorage.isUploadKey) ?? false;
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 6), () {
       if (isUploaded) {
         // ignore: use_build_context_synchronously
         pushWithReplacment(context, const HomeView());

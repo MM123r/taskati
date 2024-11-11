@@ -69,8 +69,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       CircleAvatar(
                           radius: 70,
                           backgroundColor: AppColors.primaruColor,
-                          backgroundImage: FileImage(File(AppLocalStorage.getcachData(AppLocalStorage.imageKey)))
-                          ),
+                          backgroundImage: FileImage(File(
+                              AppLocalStorage.getcachData(
+                                  AppLocalStorage.imageKey)))),
                       Positioned(
                           bottom: 0,
                           right: 0,
@@ -103,8 +104,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .pickImage(source: isCamera ? ImageSource.camera : ImageSource.gallery)
         .then((value) {
       if (value != null) {
-        AppLocalStorage.cachData(AppLocalStorage.imageKey,value.path);
-        setState(() {});
+        AppLocalStorage.cachData(AppLocalStorage.imageKey, value.path);
+        setState(() {
+          Navigator.of(context).pop();
+        });
       }
     });
   }

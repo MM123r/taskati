@@ -29,11 +29,11 @@ class _UploadScreenState extends State<UploadScreen> {
                 onPressed: () {
                   if (path == null && name.isEmpty) {
                     showErrorDialog(
-                        context, 'Please Uplaod an Image and Enter your Nmae');
+                        context, 'Please Uplaod an Image and Enter your Name');
                   }
                   //
                   else if (path != null && name.isEmpty) {
-                    showErrorDialog(context, 'Please Enter your Nmae');
+                    showErrorDialog(context, 'Please Enter your Name');
                   }
                   //
                   else if (path == null && name.isNotEmpty) {
@@ -51,7 +51,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 },
                 child: Text(
                   "Done",
-                  style: getSmallTextStyle(color: AppColors.redColor),
+                  style: getSmallTextStyle(color: AppColors.whiteColor),
                 ))
           ],
         ),
@@ -60,48 +60,50 @@ class _UploadScreenState extends State<UploadScreen> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 70,
-                  backgroundColor: AppColors.primaruColor,
-                  backgroundImage: path != null
-                      ? AssetImage(path!)
-                      : const AssetImage('assets/images/user2.jpeg'),
-                ),
-                const Gap(30),
-                CustomButton(
-                  onPressed: () async {
-                    await uploadImage(isCamera: true);
-                  },
-                  text: 'Upload From Camera',
-                ),
-                const Gap(10),
-                CustomButton(
-                  onPressed: () async {
-                    await uploadImage(isCamera: false);
-                  },
-                  text: 'Upload From Gallery',
-                ),
-                const Gap(30),
-                Divider(
-                  color: AppColors.primaruColor,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                const Gap(30),
-                TextFormField(
-                  onChanged: (value) {
-                    setState(() {
-                      name = value;
-                    });
-                  },
-                  decoration:  const InputDecoration(
-                    hintText: 'Enter your name',
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundColor: AppColors.primaruColor,
+                    backgroundImage: path != null
+                        ? AssetImage(path!)
+                        : const AssetImage('assets/images/user2.jpeg'),
                   ),
-                )
-              ],
+                  const Gap(30),
+                  CustomButton(
+                    onPressed: () async {
+                      await uploadImage(isCamera: true);
+                    },
+                    text: 'Upload From Camera',
+                  ),
+                  const Gap(10),
+                  CustomButton(
+                    onPressed: () async {
+                      await uploadImage(isCamera: false);
+                    },
+                    text: 'Upload From Gallery',
+                  ),
+                  const Gap(30),
+                  Divider(
+                    color: AppColors.primaruColor,
+                    indent: 20,
+                    endIndent: 20,
+                  ),
+                  const Gap(30),
+                  TextFormField(
+                    onChanged: (value) {
+                      setState(() {
+                        name = value;
+                      });
+                    },
+                    decoration:  const InputDecoration(
+                      hintText: 'Enter your name',
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));

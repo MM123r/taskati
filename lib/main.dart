@@ -10,11 +10,12 @@ import 'package:taskati/feature/intro/splash_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox('user');
-  await Hive.openBox('task');
+  await Hive.openBox<TaskModel>('task');
   await AppLocalStorage.init();
-  Hive.registerAdapter(TaskModelAdapter());
-  //
+ 
+  
   runApp(const MainApp());
 }
 
