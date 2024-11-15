@@ -22,7 +22,7 @@ class Home_header extends StatelessWidget {
           children: [
             Text(
               "Hello, ${AppLocalStorage.getcachData(AppLocalStorage.nameKey)}",
-              style: getTitleTextStyle(
+              style: getTitleTextStyle(context,
                   color: AppColors.primaruColor, fontweight: FontWeight.normal),
             ),
             Text(
@@ -39,6 +39,7 @@ class Home_header extends StatelessWidget {
           child: CircleAvatar(
             radius: 27, //assets chach
             backgroundImage:FileImage(File(AppLocalStorage.getcachData(AppLocalStorage.imageKey)))
+            
                
           ),
         )

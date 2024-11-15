@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Lottie.asset('assets/images/logo.json'),
             Text(
               "Taskati",
-              style: getTitleTextStyle(),
+              style: getTitleTextStyle(context,),
             ),
             const Gap(10),
             Text(

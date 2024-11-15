@@ -34,7 +34,7 @@ class task_item extends StatelessWidget {
               children: [
                 Text(
                   taskModel.title?? '',
-                  style: getTitleTextStyle(
+                  style: getTitleTextStyle(context,
                       color: AppColors.whiteColor, fontsize: 16),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

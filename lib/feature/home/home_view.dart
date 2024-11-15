@@ -24,7 +24,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: SafeArea(
+          
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -45,6 +47,9 @@ class _HomeViewState extends State<HomeView> {
               initialSelectedDate: DateTime.now(),
               selectionColor: AppColors.primaruColor,
               selectedTextColor: Colors.white,
+              dayTextStyle: getBodyTextStyle(context),
+              dateTextStyle: getBodyTextStyle(context),
+              monthTextStyle: getBodyTextStyle(context),
               onDateChange: (date) {
                 // New date selected
                 setState(() {
@@ -73,7 +78,7 @@ class _HomeViewState extends State<HomeView> {
                         Lottie.asset('assets/images/empty.json'),
                         Text(
                           "No Tasks for $selectDate",
-                          style: getBodyTextStyle(fontsize: 16),
+                          style: getBodyTextStyle(context,fontsize: 16),
                         )
                       ],
                     );
@@ -101,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
                                 const Gap(10),
                                 Text(
                                   "Delete",
-                                  style: getBodyTextStyle(
+                                  style: getBodyTextStyle(context,
                                       color: AppColors.whiteColor),
                                 ),
                               ],
@@ -124,7 +129,7 @@ class _HomeViewState extends State<HomeView> {
                                 const Gap(10),
                                 Text(
                                   "Complete",
-                                  style: getBodyTextStyle(
+                                  style: getBodyTextStyle(context,
                                       color: AppColors.whiteColor),
                                 ),
                               ],

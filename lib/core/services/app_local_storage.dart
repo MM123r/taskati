@@ -7,7 +7,7 @@ class AppLocalStorage {
   static String nameKey = 'name';
   static String imageKey = 'image';
   static String isUploadKey='isUpload';
-  
+  static String isDarkModekey='isDarkMode';
 
   static init() {
     userbox = Hive.box('user');
@@ -18,7 +18,7 @@ class AppLocalStorage {
     userbox.put(key, value);
   }
 
-  static getcachData(String key) {
+  static getcachData(String key,) {
     return userbox.get(key);
   }
 
